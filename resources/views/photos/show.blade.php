@@ -1,24 +1,27 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-  <div class="row justify-content-center">
-    <div class="col-md-8">
-      <div class="card">
-        <div class="card-header">Photo</div>
+<div class="container mx-auto px-4">
+    <div class="flex justify-center">
+        <div class="w-full lg:w-1/2">
+            <div class="bg-white shadow rounded-lg p-6">
+                <div class="mb-4 font-bold">Photo</div>
 
-        <div class="card-body">
-          <img src="{{ Storage::url($photo->filename )}}" alt="Photo" class="img-fluid">
+                <div class="mb-4">
+                    <img src="{{ Storage::url($photo->filename )}}" alt="Photo" class="w-full">
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
+
+    <div class="flex justify-center mt-4">
+        <form method="POST" action="{{ route('photo.destroy', ['id' => $photo->id]) }}">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="btn btn-danger bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+                削除
+            </button>
+        </form>
+    </div>
 </div>
-
-<form method="POST" action="{{ route('photo.destroy', ['id' => $photo->id]) }}">
-  @csrf
-  @method('DELETE')
-  <button type="submit", class="btn btn-danger">削除</button>
-</form>
-
 @endsection
