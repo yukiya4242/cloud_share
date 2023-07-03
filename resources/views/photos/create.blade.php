@@ -2,20 +2,40 @@
 
 @section('content')
 <div class="container">
-    <form action="{{ route('photos.store') }}" method="POST" enctype="multipart/form-data">
-        @csrf
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">Upload Photo</div>
 
-        <div class="form-group">
-            <label for="photo">Photo</label>
-            <input type="file" class="form-control" name="photo" id="photo">
+                <div class="card-body">
+                    <form method="POST" action="{{ route('photos.store') }}" enctype="multipart/form-data">
+                        @csrf
+
+                        <div class="form-group row">
+                            <label for="photo" class="col-md-4 col-form-label text-md-right">Photo</label>
+
+                            <div class="col-md-6">
+                                <input id="photo" type="file" class="form-control @error('photo') is-invalid @enderror" name="photo" required>
+
+                                @error('photo')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row mb-0">
+                            <div class="col-md-6 offset-md-4">
+                                <button type="submit" class="btn btn-primary">
+                                    Upload
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
-
-        <div class="form-group">
-            <label for="caption">Caption</label>
-            <input type="text" class="form-control" name="caption" id="caption">
-        </div>
-
-        <button type="submit" class="btn btn-primary">Upload</button>
-    </form>
+    </div>
 </div>
 @endsection
