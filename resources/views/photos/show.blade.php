@@ -15,10 +15,10 @@
   </div>
 </div>
 
-<form method::"POST" action="{{ route('photo.destroy', ['photo' => $photo->id]) }}">
+<form method="POST" action="{{ route('photo.destroy', ['id' => $photo->id]) }}">
   @csrf
   @method('DELETE')
-  <button type="submit", class="btn btn-damger">削除</button>
+  <button type="submit", class="btn btn-danger">削除</button>
 </form>
 
-@andsection
+@endsection

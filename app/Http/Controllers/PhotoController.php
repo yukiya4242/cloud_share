@@ -15,9 +15,11 @@ class PhotoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-       
+       $search = $request->input('search');
+       $photos = Photo::where('filename', 'like', "%{search}%")->get();
+       return view('photos.index', ['photos' => $photos]);
     }
 
     /**
@@ -41,13 +43,13 @@ class PhotoController extends Controller
         $request->validate([
             'photo' => 'required|image|max:2048'
         ]);
-        
+
         $photo = new Photo;
         $photo ->user_id = Auth::id();
         $photo->filename = $request->photo->store('photos');
-        
+
         $photo->save();
-        
+
         return redirect()->route('photos.show', ['id' => $photo->id]);
     }
 
@@ -60,8 +62,8 @@ class PhotoController extends Controller
     public function show($id)
     {
         $photo = Photo::findOrFail($id);
-        
-        return viwe('photos.show', ['photo' => $photo]);
+
+        return view('photos.show', ['photo' => $photo]);
     }
 
     /**
@@ -73,7 +75,7 @@ class PhotoController extends Controller
     public function edit($id)
     {
         $photo = Photo::findOrFail($id);
-        
+
         return view('photos.edit', ['photo' => $photo]);
     }
 
@@ -89,13 +91,13 @@ class PhotoController extends Controller
         $request->validate([
             'photo' => 'required|image|max:2048'
             ]);
-            
+
         $photo = Photo::FindOrFail($id);
         Storage::delete($photo->filename);
         $photo->filename = $request->photo->store('photos');
-        
+
         $photo->save();
-        
+
         return redirect()->route('photos.show', ['id' => $photo->id]);
     }
 
@@ -110,7 +112,12 @@ class PhotoController extends Controller
         $photo = Photo::findOrFail($id);
         Storage::delete($photo->filename);
         $photo->delete();
-        
+
         return redirect()->route('photos.index');
+    }
+
+    public function __construct()
+    {
+        $this->middleware('auth');
     }
 }
