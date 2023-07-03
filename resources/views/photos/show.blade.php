@@ -15,4 +15,10 @@
   </div>
 </div>
 
+<form method::"POST" action="{{ route('photo.destroy', ['photo' => $photo->id]) }}">
+  @csrf
+  @method('DELETE')
+  <button type="submit", class="btn btn-damger">削除</button>
+</form>
+
 @andsection

@@ -33,11 +33,11 @@ Route::middleware('auth')->group(function () {
     Route::post('photos',        [PhotoController::class, 'store'])->name('photo.store');
     
     // 写真、編集&更新フォーム
-    Route::get('/photo/{id}/edit', [PhotoContoller::class, 'edit'])->name('photos.edit');
-    Route::patch('photos/{id}',    [PhotoController::class, 'update'])->name('photos.update');
+    Route::get('/photo/{id}/edit', [PhotoContoller::class, 'edit'])->name('photo.edit');
+    Route::patch('photos/{id}',    [PhotoController::class, 'update'])->name('photo.update');
     
     // 写真削除
-    Route::delete('/photos/{id}', [PhotoController::class, 'delete'])->name('photos.destroy');
+    Route::delete('/photos/{id}', [PhotoController::class, 'delete'])->name('photo.destroy');
     
     
 });
