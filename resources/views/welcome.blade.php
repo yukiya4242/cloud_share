@@ -26,27 +26,28 @@
 
     </head>
     <body class="antialiased">
-      <header class="text-gray-600 body-font">
-          <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+       <header class="text-gray-600 body-font">
+        <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
             <a class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full" viewBox="0 0 24 24">
-                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
-              </svg>
-              <span class="ml-3 text-xl">Tailblocks</span>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full" viewBox="0 0 24 24">
+                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+                </svg>
+                <span class="ml-3 text-xl">Tailblocks</span>
             </a>
             <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center">
-              <a class="mr-5 hover:text-gray-900">First Link</a>
-              <a class="mr-5 hover:text-gray-900">Second Link</a>
-              <a class="mr-5 hover:text-gray-900">Third Link</a>
-              <a class="mr-5 hover:text-gray-900">Fourth Link</a>
+                @if (Auth::check())
+                    <a href="{{ route('profile.edit') }}" class="mr-5 hover:text-gray-900">マイページ</a>
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <a href="{{ route('logout') }}" class="mr-5 hover:text-gray-900" onclick="event.preventDefault(); this.closest('form').submit();">ログアウト</a>
+                    </form>
+                @else
+                    <a href="{{ route('register') }}" class="mr-5 hover:text-gray-900 bg-gray-100 border-0 py-1 px-3 rounded hover:bg-gray-200">新規登録</a>
+                    <a href="{{ route('login') }}" class="mr-5 hover:text-gray-900 bg-gray-100 border-0 py-1 px-3 rounded hover:bg-gray-200">ログイン</a>
+                @endif
             </nav>
-            <button class="inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0">Button
-              <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-1" viewBox="0 0 24 24">
-                <path d="M5 12h14M12 5l7 7-7 7"></path>
-              </svg>
-            </button>
-          </div>
-       </header>
+        </div>
+    </header>
 <section class="text-gray-600 body-font">
   <div class="container px-5 py-24 mx-auto flex flex-wrap">
     <div class="flex w-full mb-20 flex-wrap">
@@ -56,24 +57,24 @@
 
     <div class="flex flex-wrap md:-m-2 -m-1">
       <div class="flex flex-wrap w-1/2">
-        <div class="md:p-2 p-1 w-1/2 bg-gray-500">
+        <div class="md:p-1 p-1 w-1/2 bg-gray-500">
           <img alt="gallery" class="w-full object-cover h-full object-center block" src="{{ asset('img/airphoto.png') }}">
         </div>
-        <div class="md:p-2 p-1 w-1/2 bg-gray-500">
+        <div class="md:p-1 p-1 w-1/2 bg-gray-500">
           <img alt="gallery" class="w-full object-cover h-full object-center block" src="{{ asset('img/fly.png') }}">
         </div>
-        <div class="md:p-2 p-1 w-full bg-gray-500">
+        <div class="md:p-1 p-1 w-full bg-gray-500">
           <img alt="gallery" class="w-full h-full object-cover object-center block" src="{{ asset('img/happyphoto.png') }}">
         </div>
       </div>
       <div class="flex flex-wrap w-1/2">
-        <div class="md:p-2 p-1 w-full bg-gray-500">
+        <div class="md:p-1 p-1 w-full bg-gray-500">
           <img alt="gallery" class="w-full h-full object-cover object-center block" src="{{ asset('img/upload.png') }}">
         </div>
-        <div class="md:p-2 p-1 w-1/2 bg-gray-500">
+        <div class="md:p-1 p-1 w-1/2 bg-gray-500">
           <img alt="gallery" class="w-full object-cover h-full object-center block" src="{{ asset('img/chatphoto.png') }}">
         </div>
-        <div class="md:p-2 p-1 w-1/2 bg-gray-500">
+        <div class="md:p-1 p-1 w-1/2 bg-gray-500">
           <img alt="gallery" class="w-full object-cover h-full object-center block" src="{{ asset('img/likephoto.png') }}">
         </div>
       </div>
