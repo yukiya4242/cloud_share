@@ -15,12 +15,21 @@ class PhotoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+   public function index(Request $request)
     {
-       $search = $request->input('search');
-       $photos = Photo::where('filename', 'like', "%{search}%")->get();
-       return view('photos.index', ['photos' => $photos]);
+        $search = $request->input('search');
+
+        // 検索クエリが存在する場合は、それに基づいて写真を取得
+        if ($search) {
+            $photos = Photo::where('filename', 'like', "%{$search}%")->get();
+        } else {
+            // 検索クエリが存在しない場合は、全ての写真を取得
+            $photos = Photo::all();
+        }
+
+        return view('photos.index', ['photos' => $photos]);
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -40,13 +49,13 @@ class PhotoController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'photo' => 'required|image|max:2048'
-        ]);
+        // $request->validate([
+        //     'photo' => 'required|image|max:2048'
+        // ]);
 
         $photo = new Photo;
         $photo ->user_id = Auth::id();
-        $photo->filename = $request->photo->store('photos');
+        $photo->filename = $request->photo->store('photos', 'public');
 
         $photo->save();
 
