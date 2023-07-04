@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PhotoController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -45,6 +46,10 @@ Route::middleware('auth')->group(function () {
 
     // 写真削除
     Route::delete('/photos/{id}', [PhotoController::class, 'destroy'])->name('photo.destroy');
+
+    // ユーザー一覧
+    Route::get('/users', [UserController::class, 'index'])->name('users.index');
+    Route::get('/users/{id}', [UserController::class, 'show'])->name('users.show');
 
 
 });
