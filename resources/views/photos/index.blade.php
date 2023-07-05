@@ -19,6 +19,8 @@
 
                     <div class="mb-4">
                         <img src="{{ Storage::url($photo->filename )}}" alt="Photo" class="w-full">
+                        <h2 class="title-font font-medium text-lg text-gray-900">タイトル: {{ $photo->title }}</h2>
+                        <p class="mb-4">説明: {{ $photo->caption }}</p>
                     </div>
                 </div>
             @endforeach

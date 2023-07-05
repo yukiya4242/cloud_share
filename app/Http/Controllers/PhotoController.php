@@ -21,7 +21,9 @@ class PhotoController extends Controller
 
         // 検索クエリが存在する場合は、それに基づいて写真を取得
         if ($search) {
-            $photos = Photo::where('filename', 'like', "%{$search}%")->get();
+            $photos = Photo::where('title', 'like', "%{$search}%")
+                            ->orWhere('caption', 'like', "%{$search}%")
+                            ->get();
         } else {
             // 検索クエリが存在しない場合は、全ての写真を取得
             $photos = Photo::all();
