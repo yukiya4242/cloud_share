@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Intervention\Image\Facades\Image;
 
 class UserController extends Controller
 {
@@ -40,6 +41,25 @@ class UserController extends Controller
     {
       $users = User::all();
       return view('user.index', compact('users'));
+    }
+
+    public function updateProfileImage(Request $request)
+    {
+      $request->validate([
+        'profile_image' => 'required|image|max:2048',
+        ]);
+
+      $user = Auth::user();
+      $filename = $user->id.'profile.jpeg';
+
+      $path = $request->file('profile_image')->storeAs('public/profile_images', $filename);
+      $image = Image::make(public_path('storage/profile_images/'.$filename))->fit(300, 300);
+      $image->save();
+
+      $user->profile_image = $filename;
+      $user->save();
+
+      return back();
     }
 }
 

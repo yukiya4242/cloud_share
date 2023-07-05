@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container mx-auto px-4">
-    <form action="{{ route('users.update') }}" method="post" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+    <form action="{{ route('users.update') }}" method="post" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" enctype="multipart/form-data">
         @csrf
         @method('PUT')
 
@@ -18,6 +18,14 @@
                 メールアドレス
             </label>
             <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="email" type="email" name="email" value="{{ Auth::user()->email }}">
+        </div>
+
+        <!-- プロフィール画像 -->
+        <div class="mb-6">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="profile_image">
+                プロフィール画像
+            </label>
+            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="profile_image" type="file" name="profile_image">
         </div>
 
         <div class="flex items-center justify-between">
