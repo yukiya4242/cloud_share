@@ -27,7 +27,7 @@ class UserController extends Controller
 
       session()->flash('message', 'ユーザー情報を更新しました');
 
-      return redirect()->back()->with('status', 'Profile updated!!');
+      return redirect()->back()->with('status', ' ');
     }
 
     public function show(User $user)

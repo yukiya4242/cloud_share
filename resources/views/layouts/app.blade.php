@@ -30,8 +30,17 @@
 
             <!-- Page Content -->
             <main>
+                @if (session('status'))
+                    <div class="text-green-500 px-4 py-2 rounded">
+                        {{ session('status') }}
+                    </div>
+                @endif
+                @if (session('message'))
+                    <div class="text-green-500 px-4 py-2 rounded">
+                        {{ session('message') }}
+                    </div>
+                @endif
                 @yield('content')
-
             </main>
         </div>
     </body>

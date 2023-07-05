@@ -63,6 +63,8 @@ class PhotoController extends Controller
 
         $photo->save();
 
+        session()->flash('message', '投稿が完了しました');
+
         return redirect()->route('photos.show', ['id' => $photo->id]);
     }
 
@@ -125,6 +127,8 @@ class PhotoController extends Controller
         $photo = Photo::findOrFail($id);
         Storage::delete($photo->filename);
         $photo->delete();
+
+        session()->flash('message', '投稿を削除しました');
 
         return redirect()->route('photos.index');
     }

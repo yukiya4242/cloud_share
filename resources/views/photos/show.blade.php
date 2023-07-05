@@ -4,7 +4,7 @@
 <div class="container mx-auto px-4">
     <div class="flex justify-center">
         <div class="w-full lg:w-1/2">
-            <div class="bg-white shadow rounded-lg p-6">
+            <div class="bg-white shadow rounded-lg p-6 mt-3">
                 <div class="mb-4 font-bold">Photo</div>
 
                 <div class="mb-4">

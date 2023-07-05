@@ -38,7 +38,7 @@
                                 <form method="POST" action="{{ route('photo.destroy', ['id' => $photo->id]) }}">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-danger bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+                                    <button type="submit" class="btn btn-danger bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" onclick="return confirm('本当に削除しますか？？')">
                                         削除
                                     </button>
                                 </form>

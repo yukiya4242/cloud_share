@@ -18,6 +18,13 @@
                 </div>
 
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('users.index')" :active="request()->routeIs('users.index')">
+                        {{ __('ユーザー一覧') }}
+                    </x-nav-link>
+
+                </div>
+
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('photo.create')" :active="request()->routeIs('photo.create')">
                         {{ __('投稿する') }}
                     </x-nav-link>
