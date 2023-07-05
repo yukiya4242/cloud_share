@@ -10,6 +10,11 @@
                 <div class="mb-4">
                     <img src="{{ Storage::url($photo->filename )}}" alt="Photo" class="w-full">
                 </div>
+
+                <div class="mb-4">
+                    <div class="font-bold text-lg">タイトル:{{ $photo->title }}</div>
+                    <p>説明:{{ $photo->caption }}</p>
+                </div>
             </div>
         </div>
     </div>

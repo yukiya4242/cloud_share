@@ -23,7 +23,7 @@ class UserController extends Controller
       return redirect()->back()->with('status', 'Profile updated!!');
     }
 
-    public function show()
+    public function show(User $user)
     {
       $photos = $user->photos;
       return view('user.show', compact('user', 'photos'));

@@ -40,7 +40,7 @@
                     <a href="{{ route('profile.edit') }}" class="mr-5 hover:text-gray-900 border-0 py-1 px-3 rounded hover:bg-gray-200">マイページ</a>
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
-                        <a href="{{ route('logout') }}" class="mr-5 hover:text-gray-900" onclick="event.preventDefault(); this.closest('form').submit(); bg-gray-100 border-0 py-1 px-3 rounded hover:bg-gray-200">ログアウト</a>
+                        <button type="submit" class="mr-5 hover:text-gray-900 bg-gray-100 border-0 py-1 px-3 rounded hover:bg-gray-200">ログアウト</button>
                     </form>
                 @else
                     <a href="{{ route('register') }}" class="mr-5 hover:text-gray-900 bg-gray-100 border-0 py-1 px-3 rounded hover:bg-gray-200">新規登録</a>

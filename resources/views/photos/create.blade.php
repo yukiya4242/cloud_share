@@ -23,6 +23,17 @@
                         </div>
 
                         <div class="mb-4">
+                            <label for="title" class="block text-gray-700">タイトル</label>
+                            <input type="text" id="title" class="form-control @error('title') is-invalide @enderror" name="title" required>
+
+                            @error('title')
+                              <span class="text-red-500 text-sm">
+                                  <strong>{{ $message }}</strong>
+                              </span>
+                            @enderror
+                        </div>
+
+                        <div class="mb-4">
                             <label for="caption" class="block text-gray-700">この写真について</label>
                             <textarea id="caption" class="form-control @error('caption') is-invalid @enderror" name="caption" required></textarea>
 
