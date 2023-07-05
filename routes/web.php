@@ -49,7 +49,12 @@ Route::middleware('auth')->group(function () {
 
     // ユーザー一覧
     Route::get('/users', [UserController::class, 'index'])->name('users.index');
+    // ユーザー詳細
     Route::get('/users/{user}', [UserController::class, 'show'])->name('users.show');
+    // ユーザー編集
+    Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
+    // ユーザー編集更新
+    Route::put('/users/update', [UserController::class, 'update'])->name('users.update');
 
 
 });

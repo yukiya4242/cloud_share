@@ -8,9 +8,14 @@ use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
-    public function edit()
+    public function edit(User $user)
     {
-      return view('user.edit');
+
+      if (Auth::user()->id != $user->id) {
+
+      }
+
+      return view('user.edit', compact('user'));
     }
 
     public function update(Request $request)
@@ -19,6 +24,8 @@ class UserController extends Controller
       $user->name = $request->name;
       $user->email = $request->email;
       $user->save();
+
+      session()->flash('message', 'ユーザー情報を更新しました');
 
       return redirect()->back()->with('status', 'Profile updated!!');
     }
