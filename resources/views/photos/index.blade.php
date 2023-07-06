@@ -7,7 +7,7 @@
   <div class="container px-5 py-24 mx-auto">
     <div class="flex flex-col text-center mb-20">
       <h1 class="text-2xl font-medium title-font mb-4 text-gray-900">投稿一覧</h1>
-      <p class="lg:w-2/3 mx-auto leading-relaxed text-base">Whatever cardigan tote bag tumblr hexagon brooklyn asymmetrical gentrify, subway tile poke farm-to-table. Franzen you probably haven't heard of them.</p>
+      <p class="lg:w-2/3 mx-auto leading-relaxed text-base">空からの眺めを共有し、美しい世界を探索しましょう。広大な自然、都市のパノラマ、見事な夕暮れ。あなたが撮影した上空の写真がここで新たな視点を開くかもしれません。未知の景色を発見し、世界を飛び越えて旅する喜びを共有しましょう。</p>
     </div>
     <div class="flex flex-wrap -m-4">
         @foreach($photos as $photo)
