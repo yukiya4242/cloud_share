@@ -15,7 +15,10 @@
             <div class="h-full flex items-center border-gray-200 border p-4 rounded-lg">
               <img alt="team" class="w-16 h-16 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4" src="{{ $user->profile_image ? Storage::url($user->profile_image) : 'https://dummyimage.com/80x80' }}">
               <div class="flex-grow">
-                <h2 class="text-gray-900 title-font font-medium ml-3">{{ $user->name }}</h2>
+                <h2 class="text-gray-900 title-font font-medium ml-3">
+                 <a href="{{ route('users.show', ['user' => $user->id]) }}">
+                   {{ $user->name }}
+                </h2>
                 <p class="text-gray-500"></p>
               </div>
             </div>
@@ -26,3 +29,21 @@
     </section>
 
 @endsection
+
+<script src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAPS_API_KEY') }}&callback=initMap" async defer></script>
+<script>
+  function initMap() {
+    var myLatLng = {lat: -25.363, lng: 131.044};
+
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 4,
+      center: myLatLng
+    });
+
+    var marker = new google.maps.Marker({
+      position: myLatLng,
+      map: map,
+      title: 'Hello World!'
+    });
+  }
+</script>

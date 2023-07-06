@@ -37,7 +37,7 @@
             </a>
             <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center">
                 @if (Auth::check())
-                    <a href="{{ route('users.show', ['user' => Auth::user()->id]) }}" class="mr-5 hover:text-gray-900 border-0 py-1 px-3 rounded hover:bg-gray-200">マイページ</a>
+                    <a href="{{ route('users.show', ['user' => Auth::user()->id]) }}" class="bg-gray-100 mr-5 hover:text-gray-900 border-0 py-1 px-3 rounded hover:bg-gray-200">マイページ</a>
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
                         <button type="submit" class="mr-5 hover:text-gray-900 bg-gray-100 border-0 py-1 px-3 rounded hover:bg-gray-200">ログアウト</button>

@@ -26,7 +26,8 @@ class PhotoController extends Controller
                             ->get();
         } else {
             // 検索クエリが存在しない場合は、全ての写真を取得
-            $photos = Photo::all();
+            $photos = Photo::with('user')->get();
+            // $photos = Photo::all();
         }
 
         return view('photos.index', ['photos' => $photos]);
