@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container mx-auto px-4">
-    <form action="{{ route('users.update') }}" method="post" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" enctype="multipart/form-data">
+    <form action="{{ route('users.update') }}" method="post" class="bg-white shadow-md rounded px-8 p-6 pb-8 mb-4 mt-3" enctype="multipart/form-data">
         @csrf
         @method('PUT')
 

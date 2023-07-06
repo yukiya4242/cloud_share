@@ -12,7 +12,7 @@
                         @csrf
 
                         <div class="mb-4">
-                            <label for="photo" class="block text-gray-700">Photo</label>
+                            <label for="photo" class="block text-gray-700">写真</label>
                             <input id="photo" type="file" class="form-control @error('photo') is-invalid @enderror" name="photo" required>
 
                             @error('photo')
