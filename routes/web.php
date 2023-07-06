@@ -41,8 +41,9 @@ Route::middleware('auth')->group(function () {
 
 
     // 写真、編集&更新フォーム
-    Route::get('/photo/{id}/edit', [PhotoContoller::class, 'edit'])->name('photo.edit');
-    Route::patch('photos/{id}',    [PhotoController::class, 'update'])->name('photo.update');
+    Route::get('/photos/{photo}/edit', [PhotoController::class, 'edit'])->name('photo.edit');
+    Route::patch('/photos/{photo}', [PhotoController::class, 'update'])->name('photo.update');
+
 
     // 写真削除
     Route::delete('/photos/{id}', [PhotoController::class, 'destroy'])->name('photo.destroy');

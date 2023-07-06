@@ -104,19 +104,27 @@ class PhotoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Photo $photo)
     {
         $request->validate([
-            'photo' => 'required|image|max:2048'
+            'title' => 'required|string|max:50',
+            'photo' => 'nullable|image|max:2048',
+            'caption' => 'required|string|max:255'
             ]);
 
-        $photo = Photo::FindOrFail($id);
+        $photo = Photo::FindOrFail($photo->id);
         Storage::delete($photo->filename);
-        $photo->filename = $request->photo->store('photos');
+
+        if($request->hasFile('photo')) {
+            $photo->filename = $request->photo->store('public/photos');
+        }
+
+        $photo->title = $request->title;
+        $photo->caption = $request->caption;
 
         $photo->save();
 
-        return redirect()->route('photos.show', ['id' => $photo->id]);
+        return redirect()->route('users.show', ['user' => $photo->user_id]);
     }
 
     /**
@@ -133,7 +141,7 @@ class PhotoController extends Controller
 
         session()->flash('message', '投稿を削除しました');
 
-        return redirect()->route('photos.index');
+        return redirect()->route('users.show', ['user' => $photo->user_id]);
     }
 
     public function __construct()

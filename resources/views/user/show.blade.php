@@ -48,6 +48,17 @@
             @endif
             </form>
 
+            <form method="GET" action="{{ route('photo.edit', ['photo' => $photo->id]) }}">
+                @csrf
+                @method('GET')
+
+            @if(Auth::user()->id == $photo->user_id)
+                <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded">
+                    編集
+                </button>
+            @endif
+            </form>
+
           </div>
         </div>
       </div>

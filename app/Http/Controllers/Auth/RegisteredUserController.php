@@ -46,6 +46,9 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        return redirect(RouteServiceProvider::HOME);
+        session()->flash('message', 'こんにちは'. $user->name. 'ようこそCloud Shareへ');
+
+        return redirect('/photos');
+
     }
 }

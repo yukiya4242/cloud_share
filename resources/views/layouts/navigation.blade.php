@@ -56,6 +56,7 @@
                             {{ __('プロフィール編集') }}
                         </x-dropdown-link>
 
+
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
