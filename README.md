@@ -10,3 +10,4 @@
 ## 動作確認動画
 
 [画面収録 2023-07-06 19.40.58.mov.zip](https://github.com/yukiya4242/cloud_share/files/11967368/2023-07-06.19.40.58.mov.zip)
+![ezgif com-video-to-gif](https://github.com/yukiya4242/cloud_share/assets/126574597/48eb167e-dedc-476b-972c-f14803c753ec)
