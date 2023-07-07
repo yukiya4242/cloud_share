@@ -9,6 +9,20 @@
       <h1 class="text-2xl font-medium title-font mb-4 text-gray-900">投稿一覧</h1>
       <p class="lg:w-2/3 mx-auto leading-relaxed text-base">空からの眺めを共有し、美しい世界を探索しましょう。広大な自然、都市のパノラマ、見事な夕暮れ。あなたが撮影した上空の写真がここで新たな視点を開くかもしれません。未知の景色を発見し、世界を飛び越えて旅する喜びを共有しましょう。</p>
     </div>
+
+    <div class="mb-5">
+    <form action="{{ route('photos.index') }}" method="GET">
+        <div class="input-group">
+            <input type="text" name="search" class="form-control" placeholder="Search..." value="{{ old('search') }}">
+            <span class="input-group-btn">
+                <button class="btn btn-default" type="submit">検索</button>
+
+            </span>
+        </div>
+    </form>
+</div>
+
+
     <div class="flex flex-wrap -m-4">
         @foreach($photos as $photo)
       <div class="p-4 lg:w-1/4 md:w-1/2">
