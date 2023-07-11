@@ -44,6 +44,28 @@
                             @enderror
                         </div>
 
+                        <div class="mb-4">
+                            <label for="latitude" class="block text-gray-700 font-semibold">経度</label>
+                            <textarea id="latitude" class="form-input mt-1 block w-full @error('latitude') border-red-500 @enderror" name="latitude" required></textarea>
+
+                            @error('latitude')
+                                <span class="text-red-500 text-sm">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="longitude" class="block text-gray-700 font-semibold">緯度</label>
+                            <textarea id="longitude" class="form-input mt-1 block w-full @error('longitude') border-red-500 @enderror" name="longitude" required></textarea>
+
+                            @error('longitude')
+                                <span class="text-red-500 text-sm">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+
                         <div class="flex justify-end">
                             <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                                 投稿

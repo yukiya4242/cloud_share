@@ -6,11 +6,12 @@
 <script>
 let locations = [
     @foreach($photos as $photo)
-    @dump($photo)
+
     { "id": "{{ $photo->id }}", "lat": {{ $photo->latitude }}, "lng": {{ $photo->longitude }} },
     @endforeach
 ];
 </script>
+ <!--<script src="{{ asset('/js/result.js') }}"></script>-->
 
 <section class="text-gray-600 body-font">
   <div class="container px-5 py-24 mx-auto">
@@ -23,7 +24,19 @@ let locations = [
          <div class="p-4 lg:w-1/4 md:w-1/2">
            <div class="h-full flex flex-col items-center text-center">
              <img alt="team" class="flex-shrink-0 rounded-lg w-full h-56 object-cover object-center mb-4" src="{{ Storage::url($photo->filename )}}" style="object-fit: cover; width: 200px; height:200px;">
-             <div id="map-{{ $photo->id }}" style="height: 200px; width: 100%;"></div>
+             <iframe
+              id="map-{{ $photo->id }}"
+              width="75%"
+              height="200px"
+              frameborder="0"
+              style="border:0"
+              src="https://www.google.com/maps/embed/v1/view?zoom=13&center={{ $photo->latitude }},{{ $photo->longitude }}&key={{ config('services.google-map.apikey') }}"
+              allowfullscreen>
+            </iframe>
+
+             <!--<div id="map-{{ $photo->id }}" style="height: 200px; width: 100%;"></div>-->
+             <!--<iframe id='map' src='https://www.google.com/maps/embed/v1/place?key={{ config("services.google-map.apikey") }}&q={{ $photo->filename }}'-->
+             <!--              width='1005' height='200px' frameborder='0'></iframe>-->
 
              <div class="w-full">
                <h2 class="title-font font-medium text-lg text-gray-900">タイトル: {{ $photo->title }}</h2>
@@ -56,9 +69,6 @@ let locations = [
          </div>
        @endforeach
     </div>
-
-    <!-- APIの読み込みと初期化は一度だけ行う -->
-    <!--<script src="{{ asset('/js/result.js') }}"></script>-->
 
 
 

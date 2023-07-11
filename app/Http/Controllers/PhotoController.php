@@ -59,11 +59,14 @@ class PhotoController extends Controller
         ]);
 
         $photo = new Photo;
-        $photo ->user_id = Auth::id();
-        $photo->filename = $request->photo->store('photos', 'public');
-        $photo->title    = $request->title;
-        $photo->caption  = $request->caption;
-
+        $photo ->user_id  = Auth::id();
+        $photo->filename  = $request->photo->store('photos', 'public');
+        $photo->title     = $request->title;
+        $photo->caption   = $request->caption;
+        $photo->latitude  = $request->latitude;
+        $photo->longitude = $request->longitude;
+        
+        
         $photo->save();
 
         session()->flash('message', '投稿が完了しました');

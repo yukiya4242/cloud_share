@@ -34,6 +34,6 @@
                 @yield('content')
             </main>
         </div>
-    <!--<script src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAPS_API_KEY') }}&callback=initMap" async defer></script>-->
+   <!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBfHR6kaDCXB9dtIhbwvITrjeSMw4xZ6V8&callback=initAllMaps" async defer></script>-->
     </body>
 </html>
