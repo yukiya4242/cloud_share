@@ -34,9 +34,6 @@ let locations = [
               allowfullscreen>
             </iframe>
 
-             <!--<div id="map-{{ $photo->id }}" style="height: 200px; width: 100%;"></div>-->
-             <!--<iframe id='map' src='https://www.google.com/maps/embed/v1/place?key={{ config("services.google-map.apikey") }}&q={{ $photo->filename }}'-->
-             <!--              width='1005' height='200px' frameborder='0'></iframe>-->
 
              <div class="w-full">
                <h2 class="title-font font-medium text-lg text-gray-900">タイトル: {{ $photo->title }}</h2>

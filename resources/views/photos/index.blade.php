@@ -2,7 +2,6 @@
 
 @section('content')
 
-
 <section class="text-gray-600 body-font">
   <div class="container px-5 py-24 mx-auto">
     <div class="flex flex-col text-center mb-20">
@@ -11,36 +10,43 @@
     </div>
 
     <div class="mb-5">
-    <form action="{{ route('photos.index') }}" method="GET">
-        <div class="input-group">
-            <input type="text" name="search" class="form-control" placeholder="Search..." value="{{ old('search') }}">
-            <span class="input-group-btn">
-                <button class="btn btn-default" type="submit">検索</button>
-
-            </span>
-        </div>
-    </form>
-</div>
-
+        <form action="{{ route('photos.index') }}" method="GET">
+            <div class="input-group">
+                <input type="text" name="search" class="form-control" placeholder="Search..." value="{{ old('search') }}">
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="submit">検索</button>
+                </span>
+            </div>
+        </form>
+    </div>
 
     <div class="flex flex-wrap -m-4">
         @foreach($photos as $photo)
-      <div class="p-4 lg:w-1/4 md:w-1/2">
-        <div class="h-full flex flex-col items-center text-center">
-          <img alt="team" class="flex-shrink-0 rounded-lg w-full h-56 object-cover object-center mb-4" src="{{ Storage::url($photo->filename )}}" style="object-fit: cover; width: 200px; height:200px;">
+            <div class="p-4 lg:w-1/4 md:w-1/2">
+                <div class="h-full flex flex-col items-center text-center">
+                    <img alt="team" class="flex-shrink-0 rounded-lg w-full h-56 object-cover object-center mb-4" src="{{ Storage::url($photo->filename )}}" style="object-fit: cover; width: 200px; height:200px;">
+                    <iframe
+                        id="map-{{ $photo->id }}"
+                        width="75%"
+                        height="200px"
+                        frameborder="0"
+                        style="border:0"
+                        src="https://www.google.com/maps/embed/v1/view?zoom=13&center={{ $photo->latitude }},{{ $photo->longitude }}&key={{ config('services.google-map.apikey') }}"
+                        allowfullscreen>
+                    </iframe>
 
-          <div class="w-full">
-            <h2 class="title-font font-medium text-lg text-gray-900">タイトル: {{ $photo->title }}</h2>
-            <h3 class="text-gray-500 mb-3 font-bold">投稿者:
-                <a href="{{ route('users.show', ['user' => $photo->user->id]) }}">
-                     {{ $photo->user->name }}
-            </h3>
-            <p class="mb-4">{{ $photo->caption }}</p>
-
-          </div>
-        </div>
-      </div>
-     @endforeach
-  </div>
+                    <div class="w-full">
+                        <h2 class="title-font font-medium text-lg text-gray-900">タイトル: {{ $photo->title }}</h2>
+                        <h3 class="text-gray-500 mb-3">投稿者:
+                            <a href="{{ route('users.show', ['user' => $photo->user->id]) }}" class="font-bold text-gray-700">
+                                {{ $photo->user->name }}
+                            </a>
+                        </h3>
+                        <p class="mb-4">{{ $photo->caption }}</p>
+                    </div>
+                </div>
+            </div>
+        @endforeach
+    </div>
 </section>
 @endsection
