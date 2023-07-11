@@ -97,18 +97,29 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         function success(position) {
-            console.log(position)
             latitudeInput.value = position.coords.latitude;
             longitudeInput.value = position.coords.longitude;
         }
 
         function error() {
-            alert('Unable to retrieve your location');
+            alert('Unable to retrieve your location using GPS. Now trying with IP address...');
+            fetch('http://ip-api.com/json')
+            .then(response => response.json())
+            .then(data => {
+                if (data.lat && data.lon) {
+                    latitudeInput.value = data.lat;
+                    longitudeInput.value = data.lon;
+                } else {
+                    alert('Unable to retrieve your location');
+                }
+            })
+            .catch(error => console.log('Error occurred while fetching data from ip-api.com', error));
         }
 
         navigator.geolocation.getCurrentPosition(success, error);
     });
 });
 </script>
+
 
 @endsection
