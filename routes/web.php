@@ -56,6 +56,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
     // ユーザー編集更新
     Route::put('/users/update', [UserController::class, 'update'])->name('users.update');
+    // ユーザープロフィール画像
+    Route::post('/users/updateProfileImage', [UserController::class, 'updateProfileImage'])->name('users.updateProfileImage');
+
 
 
 });

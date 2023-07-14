@@ -21,10 +21,27 @@ class UserController extends Controller
 
     public function update(Request $request)
     {
+      $request->validate([
+        'name' => 'required',
+        'email' => 'required | email',
+        'profile_image' => 'image | max:2048',
+      ]);
+
       $user = Auth::user();
       $user->name = $request->name;
       $user->email = $request->email;
+
+      if ($request->hasFile('profile_image')){
+        $filename = $user->id.'Profile.jpeg';
+        $path = $request->file('profile_image')->storeAs('public/photos', $filename);
+        $image = Image::make(public_path('storage/photos/'.$filename))->fit(300, 300);
+        $image->save();
+
+        $user->profile_image = $filename;
+      }
+
       $user->save();
+
 
       session()->flash('message', 'ユーザー情報を更新しました');
 
@@ -43,23 +60,6 @@ class UserController extends Controller
       return view('user.index', compact('users'));
     }
 
-    public function updateProfileImage(Request $request)
-    {
-      $request->validate([
-        'profile_image' => 'required|image|max:2048',
-        ]);
 
-      $user = Auth::user();
-      $filename = $user->id.'profile.jpeg';
-
-      $path = $request->file('profile_image')->storeAs('public/profile_images', $filename);
-      $image = Image::make(public_path('storage/profile_images/'.$filename))->fit(300, 300);
-      $image->save();
-
-      $user->profile_image = $filename;
-      $user->save();
-
-      return back();
-    }
 }
 
