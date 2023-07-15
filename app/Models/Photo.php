@@ -14,4 +14,5 @@ class Photo extends Model
     {
       return $this->belongsTo('App\Models\User');
     }
+
 }
