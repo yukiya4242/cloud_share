@@ -28,28 +28,7 @@
     </div>
 
 
-    <div class="flex flex-wrap -m-4">
-        @foreach($photos as $photo)
-            <div class="p-4 lg:w-1/4 md:w-1/2">
-                <div class="block relative h-56 rounded overflow-hidden">
-                    <img alt="team" class="object-cover object-center w-full h-full block" src="{{ Storage::url($photo->filename )}}">
-                </div>
-                <div class="mt-4">
-                    <h2 class="text-gray-900 tracking-widest text-lg mb-1">Title: {{ $photo->title }}</h2>
-                    <h3 class="text-gray-500 title-font text-lg font-medium">Name:
-                        <a href="{{ route('users.show', ['user' => $photo->user->id]) }}" class="font-bold text-gray-500">
-                            {{ $photo->user->name }}
-                        </a>
-                    </h3>
-                    <p class="mt-1">Capation: {{ $photo->caption }}</p>
-                </div>
-            </div>
-        @endforeach
-    </div>
-</section>
-@endsection
-
-<!-- component -->
+    <!-- component -->
 <!-- This is an example component -->
 <section class="flex flex-row flex-wrap mx-auto">
 <!-- Card Component -->
@@ -64,12 +43,12 @@
         <img
           src="{{ Storage::url($photo->filename )}}"
           alt="Blog Cover"
-          class="object-cover object-center w-full h-full block"
+          class="object-cover object-center w-full h-full block rounded-lg"
           style="height: 300px; width: 300px;"
         />
       </div>
       <div class="flex items-center justify-between px-4 py-2 overflow-hidden">
-        <span class="text-xs font-medium text-blue-600 uppercase">
+        <span class="text-xs font-medium text-blue-900 uppercase">
           {{ $photo->created_at }}
         </span>
         <div class="flex flex-row items-center">
@@ -142,14 +121,7 @@
         <h2 class="text-2xl font-bold tracking-normal text-gray-800">Title: {{ $photo->title }}</h2>
       </div>
       <hr class="border-gray-300" />
-      <p
-        class="flex flex-row flex-wrap w-full px-4 py-2 overflow-hidden text-sm text-justify text-gray-700"
-      >
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias, magni
-        fugiat, odit incidunt necessitatibus aut nesciunt exercitationem aliquam
-        id voluptatibus quisquam maiores officia sit amet accusantium aliquid
-        quo obcaecati quasi.
-      </p>
+      <p class="flex flex-row flex-wrap w-full px-4 py-2 overflow-hidden text-sm text-justify text-gray-700">Capation: {{ $photo->caption }}</p>
       <hr class="border-gray-300" />
       <section class="px-4 py-2 mt-2">
         <div class="flex items-center justify-between">
@@ -159,14 +131,13 @@
               src="{{ $photo->user->profile_image ? Storage::url('photos/'.$photo->user->profile_image) : 'https://dummyimage.com/80x80' }}"
               alt="Avatar"
             />
-            <div class="flex flex-col mx-2">
-              <a href="" class="font-semibold text-gray-700 hover:underline">
-                Fajrian Aidil Pratama
+            <div class="flex flex-col mx-2 ml-4">
+              <a href="{{ route('users.show', ['user' => $photo->user->id]) }}" class="font-semibold text-gray-700 hover:underline">
+                  {{ $photo->user->name }}
               </a>
-              <span class="mx-1 text-xs text-gray-600">28 Sep 2020</span>
+              <span class="mx-1 text-xs text-gray-600">{{ $photo->updated_at }}</span>
             </div>
           </div>
-          <p class="mt-1 text-xs text-gray-600">9 minutes read</p>
         </div>
       </section>
     </div>
@@ -174,3 +145,6 @@
   @endforeach
  </div>
 </section>
+@endsection
+
+
