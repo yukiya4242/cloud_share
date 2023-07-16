@@ -44,7 +44,7 @@
           src="{{ Storage::url($photo->filename )}}"
           alt="Blog Cover"
           class="object-cover object-center w-full h-full block rounded-lg"
-          style="height: 300px; width: 300px;"
+          style="height: 200px; width: 300px;"
         />
       </div>
       <div class="flex items-center justify-between px-4 py-2 overflow-hidden">
