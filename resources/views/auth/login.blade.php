@@ -36,6 +36,11 @@
             type="email"
             name="email"
             placeholder="Email">
+            @error('email')
+                <div class="text-red-500 mt-2 text-sm">
+                    {{ $message }}
+                </div>
+            @enderror
           </div>
 
           <div class="relative w-full mb-3">
@@ -45,6 +50,11 @@
             name="password"
             :value="old('email')"
             placeholder="Password">
+            @error('password')
+                <div class="text-red-500 mt-2 text-sm">
+                    {{ $message }}
+                </div>
+            @enderror
           </div>
 
           <div>
