@@ -12,9 +12,21 @@
             Sign in with
           </h6>
         </div>
+
+        <form method="POST" action="{{ route('login') }}">
+        @csrf
+
+
         <div class="btn-wrapper text-center">
-          <button class="bg-white active:bg-blueGray-50 text-blueGray-700 font-normal px-4 py-2 rounded outline-none focus:outline-none mr-2 mb-1 uppercase shadow hover:shadow-md inline-flex items-center font-bold text-xs ease-linear transition-all duration-150" type="button">
-            <img alt="..." class="w-5 mr-1" src="https://demos.creative-tim.com/notus-js/assets/img/github.svg">Github</button>
+
+         <!--まだ未完成-->
+         <a href="{{ route('social.redirect', 'github') }}">
+            <button for="name" class="bg-white active:bg-blueGray-50 text-blueGray-700 font-normal px-4 py-2 rounded outline-none focus:outline-none mr-2 mb-1 uppercase shadow hover:shadow-md inline-flex items-center font-bold text-xs ease-linear transition-all duration-150">
+                <img alt="..." class="w-5 mr-1" src="https://demos.creative-tim.com/notus-js/assets/img/github.svg">Github
+            </button>
+         </a>
+
+
           <button class="bg-white active:bg-blueGray-50 text-blueGray-700 font-normal px-4 py-2 rounded outline-none focus:outline-none mr-1 mb-1 uppercase shadow hover:shadow-md inline-flex items-center font-bold text-xs ease-linear transition-all duration-150" type="button">
             <img alt="..." class="w-5 mr-1" src="https://demos.creative-tim.com/notus-js/assets/img/google.svg">Google </button>
 
@@ -27,14 +39,12 @@
         </div>
 
 
-        <form method="POST" action="{{ route('login') }}">
-        @csrf
-
           <div class="relative w-full mb-3">
             <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" for="email" :value="__('Email')">Email</label>
             <input id="email" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
             type="email"
             name="email"
+            :value="old('email')"
             placeholder="Email">
             @error('email')
                 <div class="text-red-500 mt-2 text-sm">
@@ -48,7 +58,6 @@
             <input id="password" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
             type="password"
             name="password"
-            :value="old('email')"
             placeholder="Password">
             @error('password')
                 <div class="text-red-500 mt-2 text-sm">

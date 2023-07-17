@@ -47,4 +47,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Photo::class);
     }
+
+    public function socialAccounts()
+    {
+        return $this->hasMany(socialAccount::class);
+    }
 }

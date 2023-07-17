@@ -60,6 +60,12 @@ Route::middleware('auth')->group(function () {
     Route::post('/users/updateProfileImage', [UserController::class, 'updateProfileImage'])->name('users.updateProfileImage');
 
 
+    // GitHubの認証後に戻るためのルーティング
+    Route::get('social-auth/{provider}/callback','Auth\SocialLoginController@providerCallback');
+    // GitHubの認証ベージに遷移するためのルーティング
+    Route::get('social-auth/{provider}','Auth\SocialLoginController@redirectToProvider')->name('social.redirect');
+
+
 
 });
 

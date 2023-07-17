@@ -24,16 +24,9 @@ let locations = [
          <div class="p-4 lg:w-1/4 md:w-1/2">
            <div class="h-full flex flex-col items-center text-center">
              <img alt="team" class="flex-shrink-0 rounded-lg w-full h-56 object-cover object-center mb-4" src="{{ Storage::url($photo->filename )}}" style="object-fit: cover; width: 200px; height:200px;">
-             <iframe
-              id="map-{{ $photo->id }}"
-              width="75%"
-              height="200px"
-              frameborder="0"
-              style="border:0"
-              src="https://www.google.com/maps/embed/v1/view?zoom=13&center={{ $photo->latitude }},{{ $photo->longitude }}&key={{ config('services.google-map.apikey') }}"
-              allowfullscreen>
-            </iframe>
 
+             <!-- Map link -->
+             <a href="#" class="show-map" data-lat="{{ $photo->latitude }}" data-lng="{{ $photo->longitude }}" data-photo-id="{{ $photo->id }}">Mapを表示</a>
 
              <div class="w-full">
                <h2 class="title-font font-medium text-lg text-gray-900">タイトル: {{ $photo->title }}</h2>
@@ -66,10 +59,53 @@ let locations = [
          </div>
        @endforeach
     </div>
-
-
-
   </div>
 </section>
+
+<!-- モーダルの基本的なHTML -->
+<div class="modal fade" id="mapModal" tabindex="-1" role="dialog" aria-labelledby="mapModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="mapModalLabel"></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+$(document).ready(function() {
+  $('.show-map').on('click', function(e) {
+    e.preventDefault();
+
+    var lat = $(this).data('lat');
+    var lng = $(this).data('lng');
+    var photoId = $(this).data('photo-id');
+
+    var iframe = `<iframe
+      id="map-${photoId}"
+      width="100%"
+      height="450"
+      frameborder="0"
+      style="border:0"
+      src="https://www.google.com/maps/embed/v1/view?zoom=13&center=${lat},${lng}&key={{ config('services.google-map.apikey') }}"
+      allowfullscreen>
+    </iframe>`;
+
+    $('#mapModal .modal-body').html(iframe);
+
+    $('#mapModal').modal('show');
+  });
+});
+</script>
 
 @endsection
