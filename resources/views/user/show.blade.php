@@ -115,7 +115,7 @@ let locations = [
 
                @if(Auth::user()->id == $photo->user_id)
                    <button type="submit" class="btn btn-danger bg-red-500 hover:bg-red-700 text-white mr-4 font-bold py-1 px-2 rounded text-sm" onclick="return confirm('本当に削除しますか')">
-                       削除
+                       DELETE
                    </button>
                @endif
                </form>
@@ -125,8 +125,8 @@ let locations = [
                    @method('GET')
 
                @if(Auth::user()->id == $photo->user_id)
-                   <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 border border-blue-700 rounded text-sm">
-                       編集
+                   <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 border rounded text-sm">
+                       EDIT
                    </button>
                @endif
                </form>
